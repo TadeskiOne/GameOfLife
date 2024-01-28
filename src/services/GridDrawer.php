@@ -2,6 +2,7 @@
 
 namespace Tadeskione\Glider\services;
 
+use JetBrains\PhpStorm\NoReturn;
 use Tadeskione\Glider\models\Cell;
 use Tadeskione\Glider\models\CellsGrid;
 
@@ -14,6 +15,7 @@ class GridDrawer
 
     public function __construct(private CellsGrid $grid) {}
 
+    #[NoReturn]
     public function drawBadEnd(): void
     {
         echo implode(PHP_EOL, $this->getGrid());
