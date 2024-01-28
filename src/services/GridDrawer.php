@@ -10,9 +10,23 @@ use Tadeskione\Glider\models\CellsGrid;
  */
 class GridDrawer
 {
+    private static $oldLines = 0;
+
     public function __construct(private CellsGrid $grid) {}
 
+    public function drawBadEnd(): void
+    {
+        echo implode(PHP_EOL, $this->getGrid());
+        echo PHP_EOL, "\033[31mAll cells are dead :(";
+        die(PHP_EOL);
+    }
+
     public function draw(): void
+    {
+        $this->display($this->getGrid());
+    }
+
+    private function getGrid(): array
     {
         $grid = [];
         foreach ($this->grid->getGrid() as $row) {
@@ -27,20 +41,19 @@ class GridDrawer
             );
         }
 
-        $this->display($grid);
+        return $grid;
     }
 
     private function display(array $generation): void
     {
-        static $oldLines = 0;
         $numNewLines = count($generation) - 1;
 
-        if ($oldLines == 0) {
-            $oldLines = $numNewLines;
+        if (self::$oldLines == 0) {
+            self::$oldLines = $numNewLines;
         }
 
         echo implode(PHP_EOL, $generation);
         echo chr(27) . "[0G";
-        echo chr(27) . "[" . $oldLines . "A";
+        echo chr(27) . "[" . self::$oldLines . "A";
     }
 }

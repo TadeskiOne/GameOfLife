@@ -28,7 +28,7 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 ### Notice: PHP 8.1 is a minimal required version for running the game
 
-Before running the game, you need install the dependencies
+Before running the game, you need install the dependencies:
 
     composer install
 
@@ -40,7 +40,9 @@ OR
 
     php play.php
 
-and click `Enter`
+and click `Enter`.
+
+The game will be ended automatically if all cell are dead.
 
 ## Game configurations
 

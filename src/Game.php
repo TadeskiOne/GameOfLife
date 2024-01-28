@@ -63,8 +63,8 @@ final class Game
         $gameCycle        = (int)self::getParam('game_cycle');
         $game             = function () {
             $this->drawer->draw();
-            $this->nextGeneration();
             sleep(self::getParam('gen_duration'));
+            $this->nextGeneration();
         };
 
         if ($gameCycle > 0) {
@@ -80,6 +80,7 @@ final class Game
 
     private function nextGeneration(): void
     {
+        $aliveCells = 0;
         foreach ($this->generation->getGrid() as $row) {
             /** @var Cell $cell */
             foreach ($row as $cell) {
@@ -88,10 +89,16 @@ final class Game
                     $cell->setIsNotAlive();
                 } elseif ($cell->isAlive() && ($aliveNeighborsCount == 2 || $aliveNeighborsCount == 3)) {
                     $cell->setIsAlive();
+                    $aliveCells++;
                 } elseif (!$cell->isAlive() && $aliveNeighborsCount == 3) {
                     $cell->setIsAlive();
+                    $aliveCells++;
                 }
             }
+        }
+
+        if ($aliveCells == 0) {
+            $this->drawer->drawBadEnd();
         }
     }
 
