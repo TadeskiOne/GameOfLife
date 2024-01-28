@@ -2,7 +2,6 @@
 
 namespace Tadeskione\Glider\services;
 
-use JetBrains\PhpStorm\NoReturn;
 use Tadeskione\Glider\models\Cell;
 use Tadeskione\Glider\models\CellsGrid;
 
