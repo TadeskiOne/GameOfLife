@@ -3,6 +3,7 @@
 namespace Tadeskione\Glider\models;
 
 use ArrayObject;
+use Exception;
 use Tadeskione\Glider\Game;
 
 /**
@@ -12,6 +13,13 @@ final class Cell
 {
     private ArrayObject $neighboursPositions;
 
+    /**
+     * @param bool      $is_alive
+     * @param array     $position
+     * @param CellsGrid $cells
+     *
+     * @throws Exception
+     */
     public function __construct(
         private bool               $is_alive = false,
         private readonly array     $position = [0, 0],
@@ -54,7 +62,7 @@ final class Cell
 
     /**
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     private function defineNeighbours(): void
     {
