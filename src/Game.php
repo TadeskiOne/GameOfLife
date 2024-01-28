@@ -48,7 +48,7 @@ final class Game
     {
         $self = self::instance();
 
-        if (empty($self->params[$paramName])) {
+        if (!isset($self->params[$paramName])) {
             throw new Exception('Undefined param "' . $paramName . '"');
         }
 
@@ -62,27 +62,22 @@ final class Game
     {
         $this->generation = $this->initFirstGeneration();
         $this->drawer     = new GridDrawer($this->generation);
-
-        while (true) {
-            $generationGrid = $this->drawer->draw();
-            $this->replaceGeneration($generationGrid);
+        $gameCycle        = self::getParam('game_cycle');
+        $game             = function () {
+            $this->drawer->draw();
             $this->nextGeneration();
             sleep(self::getParam('gen_duration'));
+        };
+
+        if (is_int($gameCycle) && $gameCycle > 0) {
+            for ($i = 0; $i < $gameCycle; $i++) {
+                $game();
+            }
+        } else {
+            while (true) {
+                $game();
+            }
         }
-    }
-
-    private function replaceGeneration(array $generation): void
-    {
-        static $oldLines = 0;
-        $numNewLines = count($generation) - 1;
-
-        if ($oldLines == 0) {
-            $oldLines = $numNewLines;
-        }
-
-        echo implode(PHP_EOL, $generation);
-        echo chr(27) . "[0G";
-        echo chr(27) . "[" . $oldLines . "A";
     }
 
     private function nextGeneration(): void
@@ -108,8 +103,6 @@ final class Game
      */
     private function initFirstGeneration(): CellsGrid
     {
-        /*print_r($this->params);
-        die();*/
         srand((double)microtime() * 1000000);
         $i         = 0;
         $cellsGrid = new CellsGrid();

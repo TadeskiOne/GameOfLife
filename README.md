@@ -35,3 +35,10 @@ OR
     php play.php
 
 and click `Enter`
+
+## Game configurations
+
+* `grid_size` - The size (height/width) of a gaming grid
+* `first_gen_alive_probability` - The density of living cells in the first generation
+* `gen_duration` - The time of life of the generation (in seconds)
+* `game_cycle` - This parameter determines the number of game iterations (in this context - generations). **Only an integer can be specified**. `0` means infinite number of iterations
