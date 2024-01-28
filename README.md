@@ -22,7 +22,7 @@ The initial pattern constitutes the seed of the system. The first generation is 
    * The program must run and work properly (the working program is better than in-progress  design).  
    * Use the ‘Glider’ pattern placed in the middle of the 25x25 cell universe for demonstration
 
-![img_1.png](img_1.png)
+![img_1.png](files/img_1.png)
 
 ## Execution
 
@@ -57,3 +57,6 @@ For example:
 
     ./play --size=10 --cycle=3 dens="0.5"
 
+Output:
+
+![img.png](files/img.png)
