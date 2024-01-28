@@ -42,7 +42,7 @@ OR
 
 and click `Enter`.
 
-The game will be ended automatically if all cell are dead.
+The game will be ended automatically if all cells are dead.
 
 ## Game configurations
 
