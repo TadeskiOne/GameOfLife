@@ -26,6 +26,8 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 ## Execution
 
+### Notice: PHP 8.1 is a minimal required version for running the game
+
 For run the game specify in the terminal:
 
     ./play

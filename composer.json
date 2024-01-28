@@ -12,5 +12,8 @@
             "name": "Danylo Kovalenko"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.1"
+    }
 }
