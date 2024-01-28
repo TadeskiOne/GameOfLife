@@ -10,7 +10,7 @@ use Tadeskione\Glider\models\CellsGrid;
  */
 class GridDrawer
 {
-    private static $oldLines = 0;
+    private static int $oldLines = 0;
 
     public function __construct(private CellsGrid $grid) {}
 
@@ -23,7 +23,17 @@ class GridDrawer
 
     public function draw(): void
     {
-        $this->display($this->getGrid());
+        $generation = $this->getGrid();
+
+        $numNewLines = count($generation) - 1;
+
+        if (self::$oldLines == 0) {
+            self::$oldLines = $numNewLines;
+        }
+
+        echo implode(PHP_EOL, $generation);
+        echo chr(27) . "[0G";
+        echo chr(27) . "[" . self::$oldLines . "A";
     }
 
     private function getGrid(): array
@@ -42,18 +52,5 @@ class GridDrawer
         }
 
         return $grid;
-    }
-
-    private function display(array $generation): void
-    {
-        $numNewLines = count($generation) - 1;
-
-        if (self::$oldLines == 0) {
-            self::$oldLines = $numNewLines;
-        }
-
-        echo implode(PHP_EOL, $generation);
-        echo chr(27) . "[0G";
-        echo chr(27) . "[" . self::$oldLines . "A";
     }
 }
