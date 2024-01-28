@@ -38,7 +38,22 @@ and click `Enter`
 
 ## Game configurations
 
+The default configuration are in the file `configs/game.php`.
+There is a list of possible parameters:
 * `grid_size` - The size (height/width) of a gaming grid
 * `first_gen_alive_probability` - The density of living cells in the first generation
 * `gen_duration` - The time of life of the generation (in seconds)
 * `game_cycle` - This parameter determines the number of game iterations (in this context - generations). **Only an integer can be specified**. `0` means infinite number of iterations
+
+You can change settings in a file or directly via command line arguments.
+
+Arguments:
+* `size` - grid_size
+* `dens` - first_gen_alive_probability
+* `dur` - gen_duration
+* `cycle` - game_cycle
+
+For example:
+
+    ./play --size=10 --cycle=3 dens="0.5"
+

@@ -62,14 +62,14 @@ final class Game
     {
         $this->generation = $this->initFirstGeneration();
         $this->drawer     = new GridDrawer($this->generation);
-        $gameCycle        = self::getParam('game_cycle');
+        $gameCycle        = (int)self::getParam('game_cycle');
         $game             = function () {
             $this->drawer->draw();
             $this->nextGeneration();
             sleep(self::getParam('gen_duration'));
         };
 
-        if (is_int($gameCycle) && $gameCycle > 0) {
+        if ($gameCycle > 0) {
             for ($i = 0; $i < $gameCycle; $i++) {
                 $game();
             }
