@@ -9,13 +9,12 @@ use Tadeskione\Glider\models\CellsGrid;
 /**
  * Class GridDrawer
  */
-class GridDrawer
+final class GridDrawer
 {
     private static int $oldLines = 0;
 
     public function __construct(private CellsGrid $grid) {}
 
-    #[NoReturn]
     public function drawBadEnd(): void
     {
         echo implode(PHP_EOL, $this->getGrid());
