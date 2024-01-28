@@ -1,0 +1,16 @@
+{
+    "name": "tadeskione/glider",
+    "description": "Conway's Game of Life realization in OOP way",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Tadeskione\\Glider\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Danylo Kovalenko"
+        }
+    ],
+    "minimum-stability": "dev"
+}
