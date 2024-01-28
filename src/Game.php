@@ -14,11 +14,8 @@ use Tadeskione\Glider\services\GridDrawer;
 final class Game
 {
     private static array $instances = [];
-    private const FIRST_GENERATION_ALIVE_PROBABILITY = 0.3;
-    private const GENERATION_DURATION                = 1; //Seconds
-
-    private CellsGrid  $generation;
-    private GridDrawer $drawer;
+    private CellsGrid    $generation;
+    private GridDrawer   $drawer;
 
     /**
      * @param array $params
@@ -57,6 +54,7 @@ final class Game
 
     /**
      * @return void
+     * @throws Exception
      */
     public function run(): void
     {
@@ -82,9 +80,9 @@ final class Game
 
     private function nextGeneration(): void
     {
-        foreach ($this->generation->getGrid() as &$row) {
+        foreach ($this->generation->getGrid() as $row) {
             /** @var Cell $cell */
-            foreach ($row as &$cell) {
+            foreach ($row as $cell) {
                 $aliveNeighborsCount = $cell->getCountOfAliveNeighbours();
                 if ($cell->isAlive() && ($aliveNeighborsCount < 2 || $aliveNeighborsCount > 3)) {
                     $cell->setIsNotAlive();
