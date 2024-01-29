@@ -12,7 +12,7 @@ final class GridDrawer
 {
     private static int $oldLines = 0;
 
-    public function __construct(private CellsGrid $grid) {}
+    public function __construct(private readonly CellsGrid $grid) {}
 
     public function drawBadEnd(): void
     {
